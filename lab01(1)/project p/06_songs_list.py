@@ -24,6 +24,18 @@ violator_songs_list = [
 # Лучше заранее вычислить необходимое, а затем в print(xxx, yyy, zzz)
 
 # TODO здесь ваш код
+# Находим время звучания каждой песни в списке
+halo_time = violator_songs_list[3][1]  # 'Halo' на индексе 3
+enjoy_time = violator_songs_list[5][1]  # 'Enjoy the Silence' на индексе 5
+clean_time = violator_songs_list[8][1]  # 'Clean' на индексе 8
+
+# Вычисляем общее время
+total_time_list = halo_time + enjoy_time + clean_time
+# Округляем до двух знаков после запятой
+total_time_rounded = round(total_time_list, 2)
+
+print(f"Три песни звучат {total_time_rounded} минут")
+
 
 # Есть словарь песен группы Depeche Mode
 violator_songs_dict = {
@@ -42,3 +54,14 @@ violator_songs_dict = {
 #   А другие три песни звучат ХХХ минут
 
 # TODO здесь ваш код
+# Получаем время звучания из словаря по ключам
+sweetest_time = violator_songs_dict['Sweetest Perfection']
+policy_time = violator_songs_dict['Policy of Truth']
+blue_dress_time = violator_songs_dict['Blue Dress']
+
+# Вычисляем общее время
+total_time_dict = sweetest_time + policy_time + blue_dress_time
+# Округляем до двух знаков после запятой
+total_time_dict_rounded = round(total_time_dict, 2)
+
+print(f"А другие три песни звучат {total_time_dict_rounded} минут")
