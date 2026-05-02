@@ -6,10 +6,10 @@ def prost(limit):
         i = range(2,int(num**0.5)+1)
         p = list(filter(lambda p: num % p == 0,i))
         if len(p) == 0:
-            a.append(num)
-            s = reduce(lambda x, y: x + y, a)
-    yield a,s
+            a.append(num)        
+    yield a
 
 limit = int(input('Введите лимит: '))
 for x in prost(limit):
-    print(x)
+    s = reduce(lambda x, y: x + y, x)
+    print(x,s)
