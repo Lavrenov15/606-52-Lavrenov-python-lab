@@ -10,6 +10,6 @@ def prost(limit):
             s = reduce(lambda x, y: x + y, a)
     yield a,s
 
-limit = 10
+limit = int(input('Введите лимит: '))
 for x in prost(limit):
     print(x)
