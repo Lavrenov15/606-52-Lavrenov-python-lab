@@ -11,3 +11,5 @@
 Результат:![5](image.png)
 
 Вывод:![5d](image-1.png)
+
+Источник:https://learnpython.org/ru/Map,%20Filter,%20Reduce
