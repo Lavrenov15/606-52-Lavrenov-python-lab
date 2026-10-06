@@ -2,35 +2,54 @@ from tkinter import Tk, filedialog, Label, Button, Text, Entry, Frame
 from math import log2
 from collections import Counter
 import heapq
+import sys
+from bisect import bisect_left
 
 
 #Алгоритмы 
+sys.setrecursionlimit(10000)
 
 def shannon_fano(text):
+    if not text:
+        return {}
+
     freq = Counter(text)
     total = len(text)
+
     probs = {ch: cnt / total for ch, cnt in freq.items()}
-    chars = sorted(probs, key=lambda ch: -probs[ch])
+    chars = sorted(probs.keys(), key=lambda ch: -probs[ch])
+    n = len(chars)
+
+    prefix_sums = [0.0] * (n + 1)
+    for i in range(n):
+        prefix_sums[i + 1] = prefix_sums[i] + probs[chars[i]]
+
     codes = {}
+    stack = [(0, n, "")]
 
-    def split(group, prefix):
-        if len(group) == 1:
-            codes[group[0]] = prefix or "0"
-            return
-        total_p = sum(probs[ch] for ch in group)
-        acc = 0
-        best_i = 1
-        best_diff = None
-        for i in range(1, len(group)):
-            acc += probs[group[i - 1]]
-            diff = abs(total_p - 2 * acc)
-            if best_diff is None or diff < best_diff:
-                best_diff = diff
-                best_i = i
-        split(group[:best_i], prefix + "0")
-        split(group[best_i:], prefix + "1")
+    while stack:
+        start, end, prefix = stack.pop()
 
-    split(chars, "")
+        if end - start == 1:
+            codes[chars[start]] = prefix or "0"
+            continue
+
+        target = (prefix_sums[start] + prefix_sums[end]) / 2.0
+        split_idx = bisect_left(prefix_sums, target, start + 1, end)
+
+        best_i = split_idx
+        if best_i >= end:
+            best_i = end - 1
+
+        if best_i > start + 1:
+            diff1 = abs(2 * prefix_sums[best_i] - prefix_sums[start] - prefix_sums[end])
+            diff2 = abs(2 * prefix_sums[best_i - 1] - prefix_sums[start] - prefix_sums[end])
+            if diff2 < diff1:
+                best_i -= 1
+
+        stack.append((best_i, end, prefix + "1"))
+        stack.append((start, best_i, prefix + "0"))
+
     return codes
 
 
@@ -173,4 +192,3 @@ root.grid_columnconfigure(1, weight=1)
 root.grid_rowconfigure(2, weight=1)
 
 root.mainloop()
-
