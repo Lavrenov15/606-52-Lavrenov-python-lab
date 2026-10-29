@@ -27,7 +27,7 @@ point_1 = (23, 34)
 #       операции сравнения дают булевы константы True и False
 # TODO здесь ваш код
 print('point_1')
-if ((point_1[0]**2)+(point_1[1]**2))**0.5<radius:
+if (((point_1[0]-0)**2)+((point_1[1]-0)**2))**0.5<radius**2:
     print('true')
 else:
     print('false')
@@ -37,7 +37,7 @@ point_2 = (30, 30)
 # Или False, если точка лежит вовне круга.
 # TODO здесь ваш код
 print('point_2')
-if ((point_2[0]**2)+(point_2[1]**2))**0.5<radius:
+if (((point_2[0]-0)**2)+((point_2[0]-0)**2))**0.5<radius**2:
     print('true')
 else:
     print('false')
@@ -46,4 +46,5 @@ else:
 # 77777.7777
 # False
 # False
+
 
