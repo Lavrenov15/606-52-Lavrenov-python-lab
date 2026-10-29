@@ -2,6 +2,7 @@
 Написать игру крестики-нолики с графическим интерфейсом (GUI) на библиотеке Flet
 
 Ход выполнения:
+
 1.Обозначение классов ошибок для собственного исключения: class TicTacToeError(Exception);class InvalidPositionError(TicTacToeError);class CellAlreadyTakenError(TicTacToeError;class GameOverError(TicTacToeError);class NotYourTurnError(TicTacToeError); 
 
 2. Создание класса Player (Игрок)
